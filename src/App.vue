@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <h1>Fudo Ipsum</h1>
+    <h1 class="heading">Fudo Ipsum</h1>
     <span>Lorem Ipsum for people of culture</span>
+    <form class="selection-form">
+        <label for="types">Select types you need</label>
+        <input type="checkbox" value="Waifu"><label>Waifu</label>
+        <input type="checkbox" value="Husbando"><label>Husbando</label>
+        <input type="checkbox" value="WaifuHusbando"><label>WaifuHusbando</label>
+    </form>
   </div>
 </template>
 
@@ -12,13 +18,19 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class App extends Vue {}
 </script>
 
-<style>
+<style lang="postcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  @apply text-center;
+}
+
+.heading {
+  @apply text-5xl font-black pb-2 px-4 pt-4;
+}
+.description {
+  @apply text-sm;
 }
 </style>
