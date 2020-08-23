@@ -15,16 +15,28 @@
               <span class="label-text">WaifuHusbando</span>
           </label>
         </div>
-        <button class="button">Generate</button>
+        <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
+    <div v-if="loremIpsum">
+      {{loremIpsum}}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { generate, GenerateOptions } from './utils/generate';
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+  loremIpsum = '';
+
+  options: GenerateOptions = { waifu: false, husbando: false };
+
+  generateLorem(): void {
+    this.loremIpsum = generate({ waifu: true, husbando: true } as GenerateOptions);
+  }
+}
 </script>
 
 <style lang="postcss">

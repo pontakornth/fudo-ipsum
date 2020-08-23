@@ -18,7 +18,7 @@ export const generate = (options: GenerateOptions): string => {
   }
   const length = options.length || 10;
   for (let i = 0; i < length; i += 1) {
-    loremIpsumOutput.push(loremIpsumPool[Math.random() * loremIpsumPool.length]);
+    loremIpsumOutput.push(loremIpsumPool[Math.floor(Math.random() * loremIpsumPool.length)]);
   }
-  return loremIpsumPool.join(' ');
+  return loremIpsumOutput.join(' ');
 };
