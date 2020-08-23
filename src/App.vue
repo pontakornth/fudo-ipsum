@@ -5,13 +5,16 @@
     <form class="selection-form">
         <label class="label-heading" for="types">Select types you need</label>
         <div class="checkboxes">
-          <label class="label-checkbox"><input type="checkbox" value="Waifu">
+          <label class="label-checkbox">
+            <input v-model="rawOptions" name="raw-option" type="checkbox" value="waifu">
               <span class="label-text">Waifu</span>
           </label>
-          <label class="label-checkbox"><input type="checkbox" value="Husbando">
+          <label class="label-checkbox">
+            <input v-model="rawOptions" name="raw-option" type="checkbox" value="husbando">
               <span class="label-text">Husbando</span>
           </label>
-          <label class="label-checkbox"><input type="checkbox" value="WaifuHusbando">
+          <label class="label-checkbox">
+            <input v-model="rawOptions" name="raw-option" type="checkbox" value="waifuHusbando">
               <span class="label-text">WaifuHusbando</span>
           </label>
         </div>
@@ -30,6 +33,8 @@ import { generate, GenerateOptions } from './utils/generate';
 @Component
 export default class App extends Vue {
   loremIpsum = '';
+
+  rawOptions = []
 
   options: GenerateOptions = { waifu: false, husbando: false };
 
