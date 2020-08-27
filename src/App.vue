@@ -20,7 +20,7 @@
         </div>
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
-    <div v-if="loremIpsum">
+    <div v-if="loremIpsum" class="output">
       {{loremIpsum}}
     </div>
   </div>
@@ -111,6 +111,11 @@ export default class App extends Vue {
 
 .button:hover {
   @apply bg-green-500;
+}
+
+.output {
+  @apply border border-green-600 my-4 w-1/2 mx-auto;
+  min-height: 12em;
 }
 
 </style>
