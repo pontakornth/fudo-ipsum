@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { generate, GenerateOptions } from './utils/generate';
 
 @Component
@@ -36,10 +36,26 @@ export default class App extends Vue {
 
   rawOptions = []
 
+  // TODO: Add better way to check the option
+  @Watch('rawOptions')
+  onRawOptionsChanged(val: Array<string>, _: Array<string>) {
+    if (val.includes('waifu')) {
+      this.options.waifu = true;
+    } else {
+      this.options.waifu = false;
+    }
+
+    if (val.includes('husbando')) {
+      this.options.husbando = true;
+    } else {
+      this.options.husbando = false;
+    }
+  }
+
   options: GenerateOptions = { waifu: false, husbando: false };
 
   generateLorem(): void {
-    this.loremIpsum = generate({ waifu: true, husbando: true } as GenerateOptions);
+    this.loremIpsum = generate(this.options as GenerateOptions);
   }
 }
 </script>
