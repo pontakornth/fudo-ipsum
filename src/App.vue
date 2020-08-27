@@ -18,6 +18,10 @@
               <span class="label-text">WaifuHusbando</span>
           </label>
         </div>
+        <label class="label-length">
+          <span class="label-text">Length (words)</span>
+          <input v-model="length" class="textbox" name="length" type="number" value="0">
+        </label>
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
     <div v-if="loremIpsum" class="output">
@@ -34,11 +38,13 @@ import { generate, GenerateOptions } from './utils/generate';
 export default class App extends Vue {
   loremIpsum = '';
 
-  rawOptions = []
+  rawOptions = [];
+
+  length = 0;
 
   // TODO: Add better way to check the option
   @Watch('rawOptions')
-  onRawOptionsChanged(val: Array<string>, _: Array<string>) {
+  onRawOptionsChanged(val: Array<string>) {
     if (val.includes('waifu')) {
       this.options.waifu = true;
     } else {
@@ -77,7 +83,7 @@ export default class App extends Vue {
 }
 
 .selection-form {
-  @apply p-4 border border-green-200 rounded flex flex-col justify-center items-center w-1/2;
+  @apply p-4 border border-green-200 rounded flex flex-col justify-center items-center w-3/4;
   @apply mx-auto;
 }
 
@@ -93,8 +99,12 @@ export default class App extends Vue {
   @apply my-0;
 }
 
+.textbox {
+  @apply border border-green-300 p-2;
+}
+
 .label-heading {
-  @apply font-bold py-4 w-1/2;
+  @apply font-bold py-4 w-3/4;
 }
 
 .label-checkbox {
@@ -114,8 +124,20 @@ export default class App extends Vue {
 }
 
 .output {
-  @apply border border-green-600 my-4 w-1/2 mx-auto;
+  @apply border border-green-600 my-4 w-3/4 mx-auto text-left p-2;
   min-height: 12em;
+}
+
+@screen md {
+  .selection-form {
+    @apply w-1/2;
+  }
+  .label-heading {
+    @apply w-1/2;
+  }
+  .output {
+    @apply w-1/2;
+  }
 }
 
 </style>
