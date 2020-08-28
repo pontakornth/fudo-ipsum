@@ -13,10 +13,6 @@
             <input v-model="rawOptions" name="raw-option" type="checkbox" value="husbando">
               <span class="label-text">Husbando</span>
           </label>
-          <label class="label-checkbox">
-            <input v-model="rawOptions" name="raw-option" type="checkbox" value="waifuHusbando">
-              <span class="label-text">WaifuHusbando</span>
-          </label>
         </div>
         <label class="label-length">
           <span class="label-text">Length (words)</span>
@@ -24,14 +20,17 @@
         </label>
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
-    <div v-if="loremIpsum" class="output">
-      {{loremIpsum}}
+    <div v-if="loremIpsum" class="output flex flex-wrap justify-center">
+      <textarea class="w-full" readonly ref="outputText" v-model="loremIpsum"></textarea>
+      <button @click="copyToClipboard" class="button">Copy to clipboard</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import {
+  Component, Vue, Watch, Ref,
+} from 'vue-property-decorator';
 import { generate, GenerateOptions } from './utils/generate';
 
 @Component
@@ -56,10 +55,16 @@ export default class App extends Vue {
     }
   }
 
+  @Ref('outputText') readonly outputText!: HTMLTextAreaElement;
+
   options: GenerateOptions = { waifu: false, husbando: false, length: 20 };
 
   generateLorem(): void {
     this.loremIpsum = generate(this.options as GenerateOptions);
+  }
+
+  copyToClipboard(): void {
+    navigator.clipboard.writeText(this.loremIpsum);
   }
 }
 </script>
@@ -114,7 +119,7 @@ export default class App extends Vue {
 }
 
 .button {
-  @apply p-2 border border-green-100 bg-green-600 text-white;
+  @apply p-2 border border-green-100 bg-green-600 text-white flex-grow-0 block;
 }
 
 .button:hover {
