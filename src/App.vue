@@ -20,7 +20,7 @@
         </div>
         <label class="label-length">
           <span class="label-text">Length (words)</span>
-          <input v-model="length" class="textbox" name="length" type="number" value="0">
+          <input v-model="options.length" class="textbox" name="length" type="number" value="0">
         </label>
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
@@ -40,8 +40,6 @@ export default class App extends Vue {
 
   rawOptions = [];
 
-  length = 0;
-
   // TODO: Add better way to check the option
   @Watch('rawOptions')
   onRawOptionsChanged(val: Array<string>) {
@@ -58,7 +56,7 @@ export default class App extends Vue {
     }
   }
 
-  options: GenerateOptions = { waifu: false, husbando: false };
+  options: GenerateOptions = { waifu: false, husbando: false, length: 20 };
 
   generateLorem(): void {
     this.loremIpsum = generate(this.options as GenerateOptions);
