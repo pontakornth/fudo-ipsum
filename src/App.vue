@@ -21,7 +21,7 @@
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
     <div v-if="loremIpsum" class="output flex flex-wrap justify-center">
-      <textarea class="w-full" readonly ref="outputText" v-model="loremIpsum"></textarea>
+      <p class="w-full" >{{loremIpsum}}</p>
       <button @click="copyToClipboard" class="button">Copy to clipboard</button>
     </div>
   </div>
@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import {
-  Component, Vue, Watch, Ref,
+  Component, Vue, Watch,
 } from 'vue-property-decorator';
 import { generate, GenerateOptions } from './utils/generate';
 
@@ -54,8 +54,6 @@ export default class App extends Vue {
       this.options.husbando = false;
     }
   }
-
-  @Ref('outputText') readonly outputText!: HTMLTextAreaElement;
 
   options: GenerateOptions = { waifu: false, husbando: false, length: 20 };
 
