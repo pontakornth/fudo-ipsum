@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.3df8532cd0245bebf7fb8f746ead2e02.js"
+  "/precache-manifest.4a0f43a3abc187a9d3c2cecede7404af.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "fudo-ipsum"});
