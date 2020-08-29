@@ -7,6 +7,10 @@ Lorem Ipsum generator for people of culture.
 - [x] Generate a lorem with specific lengths (indicate by names for now)
 - [ ] Submiting waifus and husbandos.
 
+## Contribution is needed
+
+I welcome the contribution. Feel free to open any issue or pull request.
+
 ## Project setup
 ```
 yarn install
