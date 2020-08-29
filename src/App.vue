@@ -18,10 +18,14 @@
           <span class="label-text">Length (words)</span>
           <input v-model="options.length" class="textbox" name="length" type="number" value="0">
         </label>
+        <label class="label-length">
+          <span class="label-text">Paragraph</span>
+          <input v-model="paragraphs" class="textbox" name="length" type="number" value="0">
+        </label>
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
     <div v-if="loremIpsum" class="output flex flex-wrap justify-center">
-      <p class="w-full" >{{loremIpsum}}</p>
+      <p class="w-full whitespace-pre-line" >{{loremIpsum}}</p>
       <button @click="copyToClipboard" class="button">Copy to clipboard</button>
     </div>
   </div>
@@ -31,13 +35,15 @@
 import {
   Component, Vue, Watch,
 } from 'vue-property-decorator';
-import { generate, GenerateOptions } from './utils/generate';
+import { generateParagraph, GenerateOptions } from './utils/generate';
 
 @Component
 export default class App extends Vue {
   loremIpsum = '';
 
   rawOptions = [];
+
+  paragraphs = 1;
 
   // TODO: Add better way to check the option
   @Watch('rawOptions')
@@ -58,7 +64,7 @@ export default class App extends Vue {
   options: GenerateOptions = { waifu: false, husbando: false, length: 20 };
 
   generateLorem(): void {
-    this.loremIpsum = generate(this.options as GenerateOptions);
+    this.loremIpsum = generateParagraph(this.options, this.paragraphs);
   }
 
   copyToClipboard(): void {
@@ -126,7 +132,6 @@ export default class App extends Vue {
 
 .output {
   @apply border border-green-600 my-4 w-3/4 mx-auto text-left p-2;
-  min-height: 12em;
 }
 
 @screen md {
