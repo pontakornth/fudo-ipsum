@@ -22,3 +22,11 @@ export const generate = (options: GenerateOptions): string => {
   }
   return loremIpsumOutput.join(' ');
 };
+
+export const generateParagraph = (options: GenerateOptions, amount: number): string => {
+  const paragraphs: Array<string> = [];
+  for (let i = 0; i < amount; i += 1) {
+    paragraphs.push(generate(options));
+  }
+  return paragraphs.join('\n\n');
+};
