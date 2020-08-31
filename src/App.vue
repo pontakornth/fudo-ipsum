@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import './assets/base.css';
 import {
   Component, Vue, Watch,
 } from 'vue-property-decorator';
@@ -100,9 +101,6 @@ export default class App extends Vue {
 </script>
 
 <style lang="postcss">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 #app {
   @apply text-center;
