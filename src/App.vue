@@ -114,7 +114,7 @@ export default class App extends Vue {
 }
 
 .selection-form {
-  @apply p-4 border border-green-200 rounded flex flex-col justify-center items-center w-3/4;
+  @apply p-4 border border-green-200 rounded flex flex-col justify-center items-center w-10/12;
   @apply mx-auto my-8 bg-green-200;
 }
 
@@ -155,7 +155,7 @@ export default class App extends Vue {
 }
 
 .output {
-  @apply border bg-green-200 border-green-600 my-4 w-3/4 mx-auto text-left p-2;
+  @apply border bg-green-200 border-green-600 my-4 w-10/12 mx-auto text-left p-2;
 }
 
 @screen md {
