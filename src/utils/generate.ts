@@ -1,5 +1,8 @@
-const waifus = ['Skadi', 'Amiya', 'Darknesss', 'Blue Poison'];
-const husbandos = ['Silver Ash', 'Flamebringer', 'Sasuke', 'Itachi'];
+import waifusFile from '../assets/waifus.yml';
+import husbandoFile from '../assets/husbandos.yml';
+
+const { waifus } = waifusFile;
+const { husbandos } = husbandoFile;
 
 export interface GenerateOptions {
     waifu: boolean;
