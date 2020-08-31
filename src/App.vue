@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1 class="heading">Fudo Ipsum</h1>
-    <span>Lorem Ipsum for people of culture</span>
+    <span class="description">Lorem Ipsum for people of culture</span>
     <form class="selection-form">
         <label class="label-heading" for="types">Select types you need</label>
         <span v-if="checkboxError || lengthError || paragraphError">
@@ -107,15 +107,15 @@ export default class App extends Vue {
 }
 
 .heading {
-  @apply text-5xl font-black pb-2 px-4 pt-4;
+  @apply text-5xl text-white bg-green-600 font-black pb-2 px-4 pt-4;
 }
 .description {
-  @apply text-sm;
+  @apply text-lg text-gray-100 bg-green-500 block;
 }
 
 .selection-form {
   @apply p-4 border border-green-200 rounded flex flex-col justify-center items-center w-3/4;
-  @apply mx-auto;
+  @apply mx-auto my-8 bg-green-200;
 }
 
 .selection-form * {
@@ -155,7 +155,7 @@ export default class App extends Vue {
 }
 
 .output {
-  @apply border border-green-600 my-4 w-3/4 mx-auto text-left p-2;
+  @apply border bg-green-200 border-green-600 my-4 w-3/4 mx-auto text-left p-2;
 }
 
 @screen md {

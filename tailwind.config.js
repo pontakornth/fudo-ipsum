@@ -3,7 +3,11 @@ module.exports = {
     './src/**/*.vue',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: "'Balsamiq Sans', sans-serif",
+      },
+    },
   },
   variants: {},
   plugins: [],
