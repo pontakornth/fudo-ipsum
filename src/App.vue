@@ -4,6 +4,13 @@
     <span>Lorem Ipsum for people of culture</span>
     <form class="selection-form">
         <label class="label-heading" for="types">Select types you need</label>
+        <span v-if="checkboxError || lengthError || paragraphError">
+          {{checkboxError}}
+          <br>
+          {{lengthError}}
+          <br>
+          {{paragraphError}}
+        </span>
         <div class="checkboxes">
           <label class="label-checkbox">
             <input v-model="rawOptions" name="raw-option" type="checkbox" value="waifu">
@@ -37,6 +44,11 @@ import {
 } from 'vue-property-decorator';
 import { generateParagraph, GenerateOptions } from './utils/generate';
 
+interface FormError {
+  checkboxError?: string;
+  lengthError?: string;
+}
+
 @Component
 export default class App extends Vue {
   loremIpsum = '';
@@ -44,6 +56,18 @@ export default class App extends Vue {
   rawOptions = [];
 
   paragraphs = 1;
+
+  get paragraphError() {
+    return this.paragraphs <= 0 ? 'You must generate at least one paragraph' : '';
+  }
+
+  get lengthError() {
+    return this.options.length && this.options.length <= 0 ? 'You must generate at least one word' : '';
+  }
+
+  get checkboxError() {
+    return this.rawOptions.length === 0 ? 'You must use at least one option' : '';
+  }
 
   // TODO: Add better way to check the option
   @Watch('rawOptions')
@@ -64,7 +88,9 @@ export default class App extends Vue {
   options: GenerateOptions = { waifu: false, husbando: false, length: 20 };
 
   generateLorem(): void {
-    this.loremIpsum = generateParagraph(this.options, this.paragraphs);
+    if (!(this.paragraphError || this.lengthError || this.checkboxError)) {
+      this.loremIpsum = generateParagraph(this.options, this.paragraphs);
+    }
   }
 
   copyToClipboard(): void {
