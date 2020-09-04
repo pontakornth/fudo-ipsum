@@ -4,7 +4,9 @@
     <span class="description">Lorem Ipsum for people of culture</span>
     <form class="selection-form">
         <label class="label-heading" for="types">Select types you need</label>
-        <span v-for="i in [checkboxError,lengthError, paragraphError]" :key="i">
+        <span class="text-red-500"
+              v-for="i in [checkboxError,lengthError, paragraphError]"
+              :key="i">
           {{i}}
         </span>
         <div class="checkboxes">
