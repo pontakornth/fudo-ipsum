@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <h1 class="heading">Fudo Ipsum</h1>
     <span class="description">Lorem Ipsum for people of culture</span>
     <form class="selection-form">
         <label class="label-heading" for="types">Select types you need</label>
-        <span class="text-red-500"
+        <span class="text-red-500 text-xl"
               v-for="i in [checkboxError,lengthError, paragraphError]"
               :key="i">
           {{i}}
@@ -19,14 +19,16 @@
               <span class="label-text">Husbando</span>
           </label>
         </div>
-        <label class="label-length">
-          <span class="label-text">Length (words)</span>
-          <input v-model="options.length" class="textbox" name="length" type="number" value="0">
-        </label>
-        <label class="label-length">
-          <span class="label-text">Paragraph</span>
-          <input v-model="paragraphs" class="textbox" name="length" type="number" value="0">
-        </label>
+        <div class="length-wrapper">
+          <label class="label-length">
+            <span class="label-text">Length (words)</span>
+            <input v-model="options.length" class="textbox" name="length" type="number" value="0">
+          </label>
+          <label class="label-length">
+            <span class="label-text">Paragraph</span>
+            <input v-model="paragraphs" class="textbox" name="length" type="number" value="0">
+          </label>
+        </div>
         <button @click.prevent="generateLorem" class="button">Generate</button>
     </form>
     <div v-if="loremIpsum" class="output flex flex-wrap justify-center">
@@ -101,19 +103,19 @@ export default class App extends Vue {
 <style lang="postcss">
 
 #app {
-  @apply text-center;
+  @apply text-center flex justify-center flex-row flex-wrap m-auto;
 }
 
 .heading {
-  @apply text-5xl text-white bg-green-600 font-black pb-2 px-4 pt-4;
+  @apply text-5xl text-white font-black pb-2 px-4 pt-4 w-full;
 }
 .description {
-  @apply text-lg text-gray-100 bg-green-500 block;
+  @apply text-lg text-gray-100 block w-full;
 }
 
 .selection-form {
-  @apply p-4 border border-green-200 rounded flex flex-col justify-center items-center w-10/12;
-  @apply mx-auto my-8 bg-green-200;
+  @apply p-4 rounded flex flex-col justify-center items-center w-10/12;
+  @apply mx-auto;
 }
 
 .selection-form * {
@@ -128,12 +130,18 @@ export default class App extends Vue {
   @apply my-0;
 }
 
+.length-wrapper {
+  @apply grid;
+  grid-gap: 4px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .textbox {
   @apply border border-green-300 p-2;
 }
 
 .label-heading {
-  @apply font-bold py-4 w-3/4;
+  @apply font-bold pt-4 w-3/4 my-0 text-3xl w-full;
 }
 
 .label-checkbox {
@@ -141,7 +149,7 @@ export default class App extends Vue {
 }
 
 .label-text {
-  @apply p-2;
+  @apply p-2 text-lg;
 }
 
 .button {
@@ -158,13 +166,16 @@ export default class App extends Vue {
 
 @screen md {
   .selection-form {
-    @apply w-1/2;
+    @apply w-full;
   }
   .label-heading {
     @apply w-1/2;
   }
   .output {
     @apply w-1/2;
+  }
+  .length-wrapper {
+    grid-gap: 0;
   }
 }
 
